@@ -1,0 +1,14 @@
+VOTA APP ADMIN FEATURES:
+-	View All Users
+-	Create Election Type, Positions and Locations for voting
+-	Enter Candidates for different positions
+-	View responses for each candidate (i.e Votes received)
+-	Post Elections for any Political office
+-	Post Surveys
+-	Post Events 2
+-	Post News 1
+-	Approve Candidate Request for Election (so it can be called [Candidate Request]
+-	Approve / Delete User Submissions 
+-	View submitted feedbacks
+-	View all donations
+-	Multiple admin accounts.
