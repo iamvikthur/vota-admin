@@ -19,6 +19,13 @@ import Donations from '../components/Donations'
 import Login from '../components/auth/login'
 import noData from '../components/noData'
 import Dashboard from '../components/Dashboard'
+import NewBill from '../components/bills/NewBill'
+import ManageBills from '../components/bills/ManageBills'
+import NewSurvey from '../components/surveys/NewSurvey'
+import ManageSurvey from '../components/surveys/ManageSurvey'
+import ViewBill from '../components/bills/ViewBill'
+import ViewSurvey from '../components/surveys/ViewSurvey'
+import manageSurveyQuestion from '../components/surveys/manageSurveyQuestion'
 import notFound from '../components/notFound'
 
 Vue.use(VueRouter)
@@ -28,6 +35,41 @@ const routes = [
     path: '/',
     name: 'Dashboard',
     component: Dashboard
+  },
+  {
+    path: '/survey/question/manage',
+    name: 'manageSurveyQuestion',
+    component: manageSurveyQuestion
+  },
+  {
+    path: '/manage_bill',
+    name: 'ViewBill',
+    component: ViewBill
+  },
+  {
+    path: '/new_bill',
+    name: 'NewBill',
+    component: NewBill
+  },
+  {
+    path: '/manage_bills',
+    name: 'ManageBills',
+    component: ManageBills
+  },
+  {
+    path: '/new_survey',
+    name: 'NewSurvey',
+    component: NewSurvey
+  },
+  {
+    path: '/manage_survey',
+    name: 'ViewSurvey',
+    component: ViewSurvey
+  },
+  {
+    path: '/manage_surveys',
+    name: 'ManageSurvey',
+    component: ManageSurvey
   },
   {
     path: '/login',

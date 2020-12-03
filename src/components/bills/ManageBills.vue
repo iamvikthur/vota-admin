@@ -6,12 +6,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Election View</h1>
+            <h1 class="m-0">Manage Bills</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="/">Home</a></li>
-              <li class="breadcrumb-item active">Election View</li>
+              <li class="breadcrumb-item active">View Bills</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -20,14 +20,13 @@
     <!-- /.content-header -->
 
     <!-- Main content -->
-    <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
         <div class="row">
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Available Elections</h3>
+                <h3 class="card-title">Available Bills</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -38,28 +37,30 @@
                 <table id="usersList" class="table table-bordered table-hover" v-else>
                   <thead>
                   <tr>
-                    <th>Election Type</th>
-                    <th>Election Location</th>
-                    <th>Election Date</th>
+                    <th>Bill Title</th>
+                    <th>Bill Descriptipon</th>
+                    <th>Bill Type</th>
+                    <th>Bill Answers</th>
                     <th>Action</th>
                   </tr>
                   </thead>
                   <tbody>
-                  <tr v-for="(election,index) in elections" :key="index" id="tableTr">
-                    <td>{{election.etype}}</td>
-                    <td>{{election.elocation}}</td>
-                    <td>{{election.edate}}</td>
-                    <!-- <td>{{election.uaddress}}</td> -->
+                  <tr v-for="(bill,index) in bills" :key="index" id="tableTr">
+                    <td>{{bill.btitle}}</td>
+                    <td>{{bill.bbody}}</td>
+                    <td>{{bill.btype}}</td>
+                    <td>{{bill.bill_ans.length}}</td>
                     <td>
-                       <button @click.prevent="manageElection(election)" class="btn btn-info">Manage</button>
+                       <button @click.prevent="manageElection(bill)" class="btn btn-info">Manage</button>
                     </td>
                   </tr>
                   </tbody>
                   <tfoot>
                   <tr>
-                    <th>Election Type</th>
-                    <th>Election Location</th>
-                    <th>Election Date</th>
+                   <th>Bill Title</th>
+                    <th>Bill Descriptipon</th>
+                    <th>Bill Type</th>
+                    <th>Bill Answers</th>
                     <th>Action</th>
                   </tr>
                   </tfoot>
@@ -75,7 +76,6 @@
       </div>
       <!-- /.container-fluid -->
     </section>
-    <!--<display-user v-if="pageVariables.wantsToShowUser" :user="selectedUser" />-->
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
@@ -107,15 +107,9 @@
           this.getElections()
         },
         methods: {
-          manageElection: function(election){
-            this.$store.state.currentElection = election
-            this.$router.push({ path: 'manage_election' })
-          },
-          openModal: function(user){
-            this.selectedUser = user
-            this.pageVariables.wantsToShowUser = true
-            $('#modal-lg').modal('show')
-            // console.log(user.uname)
+          manageElection: function(bill){
+            this.$store.state.currentBill = bill
+            this.$router.push({ path: 'manage_bill' })
           },
           initDataTable: function(){
             $('#usersList').DataTable({
@@ -129,16 +123,16 @@
             });
           },
           getElections: function(){
-            window.axios.get(`${this.baseUrl}/public/election/get-all`)
+            window.axios.get(`${this.baseUrl}/bill/get-all`)
             .then(res=>{
               console.log(res)
-              this.elections = res.data.data
+              this.bills = res.data.data
               this.pageVariables.ajaxwait = false
             })
             .catch(err=>{
               console.log(err)
               this.pageVariables.ajaxwait = false
-              alert("error fetching elections")
+              alert("error fetching bills")
             })
           }
         },

@@ -10,7 +10,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="/">Home</a></li>
-                    <li class="breadcrumb-item active">View Users</li>
+                    <li class="breadcrumb-item active">Add Election</li>
                     </ol>
                 </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -23,7 +23,7 @@
                         <!-- general form elements disabled -->
                         <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">General Elements</h3>
+                            <h3 class="card-title">Provide Election Data</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -182,7 +182,7 @@ export default {
             .catch(err=> {
                 window.$('div#status').fadeIn()
                 window.$('div#postStatusIsError').show()
-                window.$('button#submitBtn').attr('disabled', true).text('Submit')
+                window.$('button#submitBtn').attr('disabled', false).text('Submit')
                 this.postStatus.text = "Error Occured"
                 this.postStatus.error = true
                 console.log(err)

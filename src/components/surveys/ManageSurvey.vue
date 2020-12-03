@@ -6,12 +6,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Election View</h1>
+            <h1 class="m-0">Manage Survey</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="/">Home</a></li>
-              <li class="breadcrumb-item active">Election View</li>
+              <li class="breadcrumb-item active">View Surveys</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -20,14 +20,13 @@
     <!-- /.content-header -->
 
     <!-- Main content -->
-    <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
         <div class="row">
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Available Elections</h3>
+                <h3 class="card-title">Available Surveys</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -38,28 +37,24 @@
                 <table id="usersList" class="table table-bordered table-hover" v-else>
                   <thead>
                   <tr>
-                    <th>Election Type</th>
-                    <th>Election Location</th>
-                    <th>Election Date</th>
+                    <th>Survey Group</th>
+                    <th>Survey Descriptipon</th>
                     <th>Action</th>
                   </tr>
                   </thead>
                   <tbody>
-                  <tr v-for="(election,index) in elections" :key="index" id="tableTr">
-                    <td>{{election.etype}}</td>
-                    <td>{{election.elocation}}</td>
-                    <td>{{election.edate}}</td>
-                    <!-- <td>{{election.uaddress}}</td> -->
+                  <tr v-for="(survey,index) in surveys" :key="index" id="tableTr">
+                    <td>{{survey.sgroup}}</td>
+                    <td>{{survey.sdesc}}</td>
                     <td>
-                       <button @click.prevent="manageElection(election)" class="btn btn-info">Manage</button>
+                       <button @click.prevent="manageSurvey(survey)" class="btn btn-info">Manage</button>
                     </td>
                   </tr>
                   </tbody>
                   <tfoot>
                   <tr>
-                    <th>Election Type</th>
-                    <th>Election Location</th>
-                    <th>Election Date</th>
+                   <th>Survey Title</th>
+                    <th>Survey Descriptipon</th>
                     <th>Action</th>
                   </tr>
                   </tfoot>
@@ -75,7 +70,6 @@
       </div>
       <!-- /.container-fluid -->
     </section>
-    <!--<display-user v-if="pageVariables.wantsToShowUser" :user="selectedUser" />-->
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
@@ -84,9 +78,7 @@
 <script>
   import axios from 'axios'
   import $ from 'jquery'
-  // import displayUser from './Functions/displayUser'
   import {Circle2} from 'vue-loading-spinner'
-  // import {CubeSpin} from 'vue-loading-spinner'
   require('datatables.net')
     export default {
         data(){
@@ -104,18 +96,12 @@
           if (!window.localStorage.getItem('utoken')) {
             this.$router.push('/login')
           }
-          this.getElections()
+          this.getSurveys()
         },
         methods: {
-          manageElection: function(election){
-            this.$store.state.currentElection = election
-            this.$router.push({ path: 'manage_election' })
-          },
-          openModal: function(user){
-            this.selectedUser = user
-            this.pageVariables.wantsToShowUser = true
-            $('#modal-lg').modal('show')
-            // console.log(user.uname)
+          manageSurvey: function(survey){
+            this.$store.state.currentSurvey = survey
+            this.$router.push({ path: 'manage_survey' })
           },
           initDataTable: function(){
             $('#usersList').DataTable({
@@ -128,17 +114,17 @@
             "responsive": true,
             });
           },
-          getElections: function(){
-            window.axios.get(`${this.baseUrl}/public/election/get-all`)
+          getSurveys: function(){
+            window.axios.get(`${this.baseUrl}/survey/group/get-all`)
             .then(res=>{
               console.log(res)
-              this.elections = res.data.data
+              this.surveys = res.data.data
               this.pageVariables.ajaxwait = false
             })
             .catch(err=>{
               console.log(err)
               this.pageVariables.ajaxwait = false
-              alert("error fetching elections")
+              alert("error fetching surveys")
             })
           }
         },

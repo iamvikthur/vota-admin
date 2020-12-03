@@ -79,13 +79,56 @@
               </li>
             </ul>
           </li>
+
+      <!-- elections -->
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <!--<i class="nav-icon fas fa-tachometer-alt"></i>-->
+              <p>
+                Bills
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <router-link to="/manage_bills" id="navLink" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Manage Bills</p>
+                </router-link>
+              </li>
+              <li class="nav-item">
+                <router-link to="/new_bill" id="navLink" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Create New Bill</p>
+                </router-link>
+              </li>
+            </ul>
+          </li>
 			
-			<!-- surveys -->
-			<li class="nav-item">
-        <router-link to="/no_data" id="navLink" class="nav-link">
-          <p>Surveys</p>
-        </router-link>
-			</li>
+			<!-- elections -->
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <!--<i class="nav-icon fas fa-tachometer-alt"></i>-->
+              <p>
+                Surveys
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <router-link to="/manage_surveys" id="navLink" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Manage Surveys</p>
+                </router-link>
+              </li>
+              <li class="nav-item">
+                <router-link to="/new_survey" id="navLink" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Create New Survey</p>
+                </router-link>
+              </li>
+            </ul>
+          </li>
 
       <!-- news -->
           <li class="nav-item">

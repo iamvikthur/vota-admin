@@ -260,6 +260,11 @@ export default {
 	    	stats: null,
 	    }
     },
+	created(){
+		if(!this.isLoggedIn){
+			this.$router.push('/login')
+		}
+	},
     mounted(){
     	this.getStats()
     },
